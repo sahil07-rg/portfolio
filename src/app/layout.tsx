@@ -11,7 +11,13 @@ const devanagari = Noto_Sans_Devanagari({
   weight: ["400", "500"],
 });
 
+// Vercel sets VERCEL_PROJECT_PRODUCTION_URL (host only, no scheme) at build time.
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Sahil Kumar | AI/ML Engineer",
   description:
     "Robotics and AI undergraduate and ML research intern at ISRO (IIRS). Machine learning for satellite, sensor and genomic data.",
