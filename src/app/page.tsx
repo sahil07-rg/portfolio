@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 // Layout and class names follow ThreeUI Community "Kage" (MIT); /kage/kage.js drives the scene
 // and reads the data-* hooks below (data-cam, data-chip, data-les, data-fg, data-rv).
+import { DiagramGallery } from "@/components/diagram-gallery";
 import { ForegroundDimmer } from "@/components/foreground-dimmer";
 import { HoloCard } from "@/components/holo-card";
 import { SakuraPetals } from "@/components/sakura-petals";
-import { chips, credentials, featured, nav, profile, repos, timeline, work } from "@/content/profile";
+import { chips, credentials, featured, nav, papers, profile, repos, timeline, work } from "@/content/profile";
 
 function Arrow() {
   return (
@@ -121,13 +122,13 @@ export default function Home() {
             </div>
             <div className="chapters" id="chips">
               {chips.map((c, i) => (
-                <div key={c.title} className="chip" data-chip={i} data-rv="up" data-cursor>
+                <a key={c.title} className="chip" href={c.href} data-chip={i} data-rv="up" data-cursor>
                   <span className="num">0{i + 1}</span>
                   <span className="tx">
                     <b>{c.title}</b>
                     <p>{c.body}</p>
                   </span>
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -163,7 +164,7 @@ export default function Home() {
           </div>
           <div className="sec-head" data-rv="fade">
             <span className="k">
-              <b>01</b> Featured research
+              <b>01</b> Research
             </span>
             <span className="rule" />
             <span className="k jp">शोध</span>
@@ -173,14 +174,17 @@ export default function Home() {
               {featured.title}
             </h2>
             <div className="gate-copy">
+              <p className="isro-badge" data-rv="fade">
+                <span>Featured</span> ISRO, Indian Institute of Remote Sensing
+              </p>
               <p className="lead" data-rv="up">
                 {featured.lead}
               </p>
               <p className="body" data-rv="up">
                 {featured.body}
               </p>
-              <a className="arrowlink" href="#pathways" data-rv="fade" data-cursor>
-                <span>See selected work</span>
+              <a className="arrowlink" href="#papers" data-rv="fade" data-cursor>
+                <span>Read the papers</span>
                 <span className="ar">
                   <Arrow />
                 </span>
@@ -193,6 +197,30 @@ export default function Home() {
                 <b>{s.value}</b>
                 <span>{s.label}</span>
               </div>
+            ))}
+          </div>
+
+          {/* The two published papers, visible directly under the ISRO feature. */}
+          <div className="papers" id="papers">
+            {papers.map((p) => (
+              <article key={p.title} className="paper" data-rv="up">
+                <a className="paper-fig" href={p.href} target="_blank" rel="noreferrer" data-cursor>
+                  <img src={p.image} alt={p.imageAlt} width={p.imageSize[0]} height={p.imageSize[1]} loading="lazy" decoding="async" />
+                </a>
+                <div className="paper-body">
+                  {p.award ? <span className="paper-award">{p.award}</span> : null}
+                  <h3>{p.title}</h3>
+                  <p className="paper-venue">{p.venue}</p>
+                  <p className="paper-status">{p.status}</p>
+                  <p className="paper-text">{p.body}</p>
+                  <a className="arrowlink" href={p.href} target="_blank" rel="noreferrer" data-cursor>
+                    <span>Code and figures</span>
+                    <span className="ar">
+                      <Arrow />
+                    </span>
+                  </a>
+                </div>
+              </article>
             ))}
           </div>
         </section>
@@ -233,7 +261,7 @@ export default function Home() {
           </div>
 
           {/* Every public repo, own work first, then merged contributions to other projects. */}
-          <div className="repos">
+          <div className="repos" id="all-projects">
             <h3 className="repos-title" data-rv="up">
               All projects on{" "}
               <a href={profile.links.github} target="_blank" rel="noreferrer" data-cursor>
@@ -266,6 +294,7 @@ export default function Home() {
                           </a>
                         ))}
                       </span>
+                      {r.diagrams ? <DiagramGallery project={r.name} diagrams={r.diagrams} /> : null}
                     </li>
                   ))}
                 </ul>

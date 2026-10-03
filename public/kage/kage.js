@@ -1,5 +1,6 @@
 /* Adapted from ThreeUI Community "Kage" (MIT, (c) 2026 Meng To, @designcodeio/threeui 1.2.0).
-   Changes: wordmark text and font, section names. */
+   Changes: wordmark text and font, section names, anchor offsets measured from the page
+   (not the offset parent) so links can target elements nested inside a chapter. */
 
 /* =====================================================================
    KAGE — a live Kyoto mountain temple, after dark.
@@ -3186,7 +3187,7 @@ function wireNav() {
     const t = document.querySelector(a.getAttribute('href'));
     if (!t) return;
     e.preventDefault();
-    scrollTo({ top: a.getAttribute('href') === '#top' ? 0 : t.offsetTop - 40, behavior: REDUCE ? 'auto' : 'smooth' });
+    scrollTo({ top: a.getAttribute('href') === '#top' ? 0 : t.getBoundingClientRect().top + scrollY - 40, behavior: REDUCE ? 'auto' : 'smooth' });
   }));
 }
 
