@@ -1,4 +1,5 @@
 // Single source of truth for portfolio copy. Sourced from Sahil's resume and GitHub.
+// Labels in `hi` are Hindi (Devanagari), used where the Kage layout set decorative kanji.
 
 export const profile = {
   name: "Sahil Kumar",
@@ -11,132 +12,195 @@ export const profile = {
   },
 };
 
-export const facts = [
-  { value: "Best Paper", label: "ICMTEST-2026, Biomedical ML" },
-  { value: "2 papers", label: "Presented at conferences in 2026" },
-  { value: "ISRO", label: "ML research intern at IIRS" },
-  { value: "8.40 CGPA", label: "B.E. Robotics and AI, SMVIT" },
+export const nav = [
+  { href: "#gate", label: "Research", hi: "शोध" },
+  { href: "#pathways", label: "Work", hi: "काम" },
+  { href: "#lessons", label: "Experience", hi: "अनुभव" },
+  { href: "#eternity", label: "Contact", hi: "संपर्क" },
 ];
 
-export const featuredResearch = {
-  title: "Estimating PM2.5 where no monitor exists",
-  org: "Indian Institute of Remote Sensing, ISRO",
-  body:
-    "Ground-level PM2.5 over brick kiln hotspots in West Bengal and Bihar, predicted from MODIS/MAIAC aerosol optical depth and ERA5 meteorology.",
-  detail:
-    "Validated leave-one-station-out so the model generalises to places without ground sensors. Six models compared, with SHAP for interpretability and seasonal analysis.",
-  models: ["XGBoost", "Random Forest", "Gaussian Process", "ANN", "MLR", "Quantile Regression"],
-  status: "Journal manuscript for Geocarto International (Taylor & Francis)",
-  mentors: "Guided by Dr. Poonam Seth Tiwari and Dr. Asfa Siddique",
-  image: "/work/igp-haze.jpg",
-  imageAlt:
-    "Satellite view of winter haze over the Indo-Gangetic Plain, with the Himalayas along the top edge",
-  caption: "Winter haze over the Indo-Gangetic Plain. MODIS imagery, NASA (public domain).",
-};
-
-export const papers = [
-  {
-    title: "Adaptive ensemble anomaly detection for predictive maintenance",
-    status: "Presented at ACIFFS-2026, Manipal University Jaipur with IIT Guwahati. Extended paper under journal review.",
-    body:
-      "Weighted ensemble of Isolation Forest, One-Class SVM and an autoencoder over 8 fused vibration sensors, with time and FFT features on the NASA bearing dataset.",
-    image: "/work/vib-stft.png",
-    imageAlt: "Spectrogram of 8-channel bearing vibration data showing a steady band near 1000 Hz",
-    caption: "STFT spectrogram across all 8 vibration channels.",
-    href: "https://github.com/sahil07-rg/Ensemble-Vibration-Anomaly-Detection-for-Predictive-Maintenance",
-  },
-  {
-    title: "Leukemia classification from gene expression",
-    status: "Best Paper Award at ICMTEST-2026. Accepted for journal publication.",
-    body:
-      "ANOVA F-score feature selection on high-dimensional gene expression data to separate ALL from AML, comparing four classifiers under 5-fold cross-validation.",
-    image: "/work/leuk-genes.png",
-    imageAlt: "Bar chart of the top 20 gene importance scores",
-    caption: "Top 20 genes ranked by importance.",
-    href: "https://github.com/sahil07-rg/Gene-Expression-Based-Leukemia-Classification-Using-Feature-Selection-and-Machine-Learning",
-  },
+// Hero chips. Hovering one swings the 3D camera to a different corner of the scene.
+export const chips = [
+  { title: "Remote sensing", body: "Satellite AOD to ground-level PM2.5 at ISRO." },
+  { title: "Research", body: "Two conference papers and a Best Paper Award." },
+  { title: "Shipped ML", body: "Full-stack ML apps live on Vercel and Hugging Face." },
+  { title: "LLM agents", body: "Tool-calling agents tuned to hallucinate less." },
 ];
 
-export const housing = {
-  title: "Housing Intelligence",
+export const featured = {
+  title: "Estimating PM2.5 where no monitor exists.",
+  lead:
+    "At ISRO's Indian Institute of Remote Sensing I built a pipeline that predicts ground-level PM2.5 over brick kiln hotspots in West Bengal and Bihar, using MODIS/MAIAC aerosol optical depth and ERA5 meteorology.",
   body:
-    "A full-stack property valuation platform. A FastAPI model service handles real-time predictions, and a Next.js front end adds valuation trends and downloadable PDF reports.",
-  stack: ["Python", "FastAPI", "Next.js", "Vercel", "Render"],
-  live: "https://housingsocial.vercel.app/",
-  api: "https://housing-price-tlx4.onrender.com/docs",
-  code: "https://github.com/sahil07-rg/housing_price_front",
-  images: [
-    { src: "/work/housing-dashboard.png", alt: "Housing Intelligence valuation screen showing inputs and a predicted price" },
-    { src: "/work/housing-landing.png", alt: "Housing Intelligence landing page" },
+    "Validation is leave-one-station-out, so the model is always tested on a place it has never seen. Six models compared, with SHAP for interpretability and seasonal analysis. The journal manuscript is for Geocarto International, guided by Dr. Poonam Seth Tiwari and Dr. Asfa Siddique.",
+  stats: [
+    { value: "06", label: "Models compared" },
+    { value: "02", label: "States mapped" },
+    { value: "LOSO", label: "Validation" },
+    { value: "IIRS", label: "ISRO host" },
   ],
 };
 
-export const moreProjects = [
+// The three cloth cards. Their images are set in site.css (the cloth reads the CSS background).
+export const work = [
+  {
+    title: "PM2.5 from orbit",
+    hi: "वायु",
+    meta: "ISRO IIRS, 2026",
+    linkLabel: "Manuscript",
+    href: "#gate",
+  },
+  {
+    title: "Housing Intelligence",
+    hi: "घर",
+    meta: "FastAPI and Next.js",
+    linkLabel: "Live site",
+    href: "https://housingsocial.vercel.app/",
+  },
+  {
+    title: "Bearing anomalies",
+    hi: "कंपन",
+    meta: "ACIFFS-2026",
+    linkLabel: "Code",
+    href: "https://github.com/sahil07-rg/Ensemble-Vibration-Anomaly-Detection-for-Predictive-Maintenance",
+  },
+];
+
+export const timeline = [
+  {
+    title: "IIRS, ISRO",
+    hi: "इसरो",
+    body: "ML research intern. PM2.5 pipeline, leakage-free validation, journal manuscript.",
+    tag: "Aug-Oct 2026",
+    href: "#gate",
+  },
+  {
+    title: "PineApplee Labs",
+    hi: "एजेंट",
+    body: "AI developer and tester. Tool-calling agents, search pipeline fixes, fewer hallucinations.",
+    tag: "May-Sep 2026",
+    href: null,
+  },
+  {
+    title: "Leukemia classification",
+    hi: "जीन",
+    body: "Best Paper Award at ICMTEST-2026. ANOVA feature selection on gene expression, ALL vs AML.",
+    tag: "Best Paper",
+    href: "https://github.com/sahil07-rg/Gene-Expression-Based-Leukemia-Classification-Using-Feature-Selection-and-Machine-Learning",
+  },
+  {
+    title: "Ensemble anomaly detection",
+    hi: "संकेत",
+    body: "Presented at ACIFFS-2026 with IIT Guwahati. Isolation Forest, One-Class SVM and an autoencoder over 8 sensors.",
+    tag: "Paper",
+    href: "https://github.com/sahil07-rg/Ensemble-Vibration-Anomaly-Detection-for-Predictive-Maintenance",
+  },
   {
     title: "AI text detector",
-    body: "Fine-tuned DistilBERT that classifies human versus AI-written text, with a live demo.",
-    stack: "Transformers, Hugging Face Spaces",
+    hi: "पाठ",
+    body: "Fine-tuned DistilBERT that separates human from AI-written text, with a live demo.",
+    tag: "Live demo",
     href: "https://huggingface.co/spaces/sahil077/newspace",
-    linkLabel: "Live demo",
-  },
-  {
-    title: "Lightweight AI text detector",
-    body: "TF-IDF features with a linear SVM, as a fast baseline next to the transformer model.",
-    stack: "Scikit-learn",
-    href: "https://github.com/sahil07-rg/ai-text-detection-tfidf-svm",
-    linkLabel: "Code",
-  },
-  {
-    title: "DOOT",
-    body: "GIS-enabled platform connecting MSMEs to government bodies. Final round, MSME Hackathon 5.0.",
-    stack: "GIS, Web",
-    href: null,
-    linkLabel: null,
-  },
-  {
-    title: "Deep Learning Simplified",
-    body: "Open source contributions through GirlScript Summer of Code 2025 and 2026, now in the AI Agents track.",
-    stack: "Open source",
-    href: "https://github.com/sahil07-rg/DL-Simplified",
-    linkLabel: "Code",
   },
 ];
 
-export const experience = [
-  {
-    org: "Indian Institute of Remote Sensing, ISRO",
-    role: "Machine Learning Research Intern",
-    when: "Aug 2026 - Oct 2026",
-    where: "Remote, Dehradun",
-    points: [
-      "Built the PM2.5 estimation pipeline from satellite AOD and ERA5 meteorology.",
-      "Designed leakage-free, leave-one-station-out validation.",
-      "Processed data with Google Earth Engine and Copernicus CDS, and wrote the journal manuscript.",
-    ],
-  },
-  {
-    org: "PineApplee Labs",
-    role: "AI Developer and Tester",
-    when: "May 2026 - Sep 2026",
-    where: "Remote",
-    points: [
-      "Built autonomous agent capabilities with web search, terminal and file tools, plus multi-step reasoning.",
-      "Fixed bottlenecks in the search-extraction pipeline between the LLM and its tools.",
-      "Tuned system prompts and few-shot examples to cut hallucinations.",
-    ],
-  },
-];
+// Every public repo on github.com/sahil07-rg. Forks are listed by what Sahil actually merged upstream.
+type Repo = { name: string; body: string; stack: string; links: { label: string; href: string }[] };
 
-export const toolkit = [
-  "Python", "C++", "XGBoost", "Scikit-learn", "TensorFlow", "SHAP", "Gaussian Processes",
-  "Google Earth Engine", "MODIS / MAIAC", "ERA5", "Hugging Face", "Ollama", "Tool calling",
-  "FastAPI", "Next.js", "Docker", "AWS", "STM32 HAL",
-];
+const gh = (repo: string) => `https://github.com/sahil07-rg/${repo}`;
+const prs = (upstream: string) => `https://github.com/${upstream}/pulls?q=is%3Apr+author%3Asahil07-rg`;
 
-export const recognition = [
-  "Best Paper Award, ICMTEST-2026 (Biomedical ML Applications)",
-  "Letters of recommendation from IIRS, ISRO scientists",
-  "Recognised by SMVIT for student research in machine learning",
-  "Final round, MSME Hackathon 5.0 (2025)",
-  "McKinsey Forward Learning Program (2026)",
+export const repos: { built: Repo[]; contributed: Repo[] } = {
+  built: [
+    {
+      name: "Housing Intelligence",
+      body: "Full-stack property valuation with real-time predictions, valuation trends and PDF reports.",
+      stack: "TypeScript, Next.js",
+      links: [
+        { label: "Live", href: "https://housingsocial.vercel.app/" },
+        { label: "Code", href: gh("housing_price_front") },
+      ],
+    },
+    {
+      name: "Housing price API",
+      body: "FastAPI backend serving model inference and analytics for Housing Intelligence.",
+      stack: "Python, FastAPI",
+      links: [
+        { label: "Docs", href: "https://housing-price-tlx4.onrender.com/docs" },
+        { label: "Code", href: gh("housing-price") },
+      ],
+    },
+    {
+      name: "Ensemble anomaly detection",
+      body: "Unsupervised ensemble for bearing degradation on the NASA dataset. Presented at ACIFFS-2026.",
+      stack: "Python, scikit-learn",
+      links: [{ label: "Code", href: gh("Ensemble-Vibration-Anomaly-Detection-for-Predictive-Maintenance") }],
+    },
+    {
+      name: "Leukemia classification",
+      body: "Gene expression feature selection to separate ALL from AML. Best Paper, ICMTEST-2026.",
+      stack: "Python, scikit-learn",
+      links: [{ label: "Code", href: gh("Gene-Expression-Based-Leukemia-Classification-Using-Feature-Selection-and-Machine-Learning") }],
+    },
+    {
+      name: "AI text detector",
+      body: "DistilBERT fine-tuned to tell human from AI-written text, with a live demo.",
+      stack: "Transformers",
+      links: [
+        { label: "Demo", href: "https://huggingface.co/spaces/sahil077/newspace" },
+        { label: "Code", href: gh("AI-text-recognizer") },
+      ],
+    },
+    {
+      name: "AI text detection, TF-IDF and SVM",
+      body: "A lightweight baseline for the same task, fast enough to run anywhere.",
+      stack: "Python, scikit-learn",
+      links: [{ label: "Code", href: gh("ai-text-detection-tfidf-svm") }],
+    },
+    {
+      name: "First React project",
+      body: "Where the front-end work started: a small React app, deployed on Vercel.",
+      stack: "JavaScript, React",
+      links: [
+        { label: "Live", href: "https://lreact-v-3zgj.vercel.app/" },
+        { label: "Code", href: gh("lreact-v") },
+      ],
+    },
+  ],
+  contributed: [
+    {
+      name: "StorySparkAI",
+      body: "Two merged PRs: interactive flip cards for the landing page and a light-mode heading fix.",
+      stack: "Open source",
+      links: [
+        { label: "Live", href: "https://storysparkai.vercel.app" },
+        { label: "PRs", href: prs("ronisarkarexe/story-spark-ai") },
+      ],
+    },
+    {
+      name: "Deep Learning Simplified",
+      body: "GirlScript Summer of Code contributor. Merged README overhaul, five commits upstream.",
+      stack: "GSSoC",
+      links: [{ label: "PRs", href: prs("abhisheks008/DL-Simplified") }],
+    },
+    {
+      name: "Vaccination Portal",
+      body: "Merged refactor: cleaned up config, removed an unused scroll library and updated dependencies.",
+      stack: "Open source",
+      links: [{ label: "PRs", href: prs("ShishuCard/Vaccination_Portal") }],
+    },
+    {
+      name: "Makao",
+      body: "A college connect platform, forked to follow along.",
+      stack: "Fork",
+      links: [{ label: "Repo", href: gh("Makao") }],
+    },
+  ],
+};
+
+export const credentials = [
+  "Best Paper, ICMTEST-2026",
+  "McKinsey Forward 2026",
+  "GSSoC 2025 and 2026",
+  "MSME Hackathon 5.0 finalist",
 ];

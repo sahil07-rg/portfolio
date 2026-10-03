@@ -1,15 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Noto_Sans_Devanagari } from "next/font/google";
+import Script from "next/script";
+import "./kage-fonts.css";
+import "./kage.css";
+import "./site.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const devanagari = Noto_Sans_Devanagari({
+  variable: "--font-devanagari",
+  subsets: ["devanagari"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -24,16 +23,26 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0b0d" },
-  ],
+  themeColor: "#05070a",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <body className="min-h-[100dvh]">{children}</body>
+    <html lang="en" className={devanagari.variable}>
+      {/* The data-layout-* switches pick Kage's "b" layouts in kage.css. */}
+      <body
+        data-layout-hero="b"
+        data-layout-story="b"
+        data-layout-gallery="b"
+        data-layout-curriculum="b"
+        data-layout-closing="b"
+        data-layout-footer="b"
+      >
+        {children}
+        <Script src="/kage/three.min.js" strategy="beforeInteractive" />
+        <Script src="/kage/kage.js" strategy="afterInteractive" />
+      </body>
     </html>
   );
 }
